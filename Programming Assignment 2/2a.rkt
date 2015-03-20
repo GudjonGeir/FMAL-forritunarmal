@@ -1,5 +1,0 @@
-(define (sumList number) 
-	(if(= 1 (length number))
-		(car number)
-		(+ (car number)
-			(sumList (cdr number)))))
