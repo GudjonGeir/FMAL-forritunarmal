@@ -14,6 +14,15 @@ fun	zip x = fn y =>
 
 
 (* 3B *)
+fun greaterThan lis = fn x => if null(lis) then []
+								else
+								let
+									val head = hd(lis)
+									val tail = tl(lis)
+								in
+									if head > x then head::greaterThan tail x
+									else greaterThan tail x
+								end;
 
 (* 3C *)
 fun reduction f lis = 	if null(tl(lis)) then  hd(lis)
@@ -28,6 +37,13 @@ fun insert(x, lis):real list = 	if null(lis) then [x]
 								else hd(lis)::insert(x, tl(lis));
 
 (* 4B *)
+fun insertHelper(lis, sorted) = if null(lis) then sorted
+								else insertHelper(tl(lis),insert(hd(lis), sorted));
+
+
+fun insertsort lis = 	if null(lis) then []
+						else insertHelper(lis, []);
+						
 
 (* 4C *)
 fun removeLast(lis) = 	if null(tl(lis)) then []
@@ -40,4 +56,11 @@ fun middle (lis) = 	if null(tl(lis)) then hd(lis)
 (* 4D *)
 
 (* 4E *)
-
+fun mymap f = fn lis => if null(lis) then []
+						else 
+						let
+							val head = hd(lis)
+							val tail = tl(lis)
+						in
+							f(hd(lis))::mymap f tail
+						end;
