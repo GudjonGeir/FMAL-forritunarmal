@@ -14,23 +14,10 @@ fun	zip x = fn y =>
 
 
 (* 3B *)
-fun reduction f lis = 	if null(tl(lis)) then  hd(lis)
-								else reduction f (f(hd(lis),hd(tl(lis)))::tl(tl(lis)));
-
-(*
-fun reduction f = fn lis => if null(tl(lis)) then lis
-							else
-							let
-								val a = hd(lis)
-								val b = hd(tl(lis))
-								val result = f a b
-								val tail = tl(tl(lis))
-							in
-								reduction f result::tail 
-							end;
-							*)
 
 (* 3C *)
+fun reduction f lis = 	if null(tl(lis)) then  hd(lis)
+								else reduction f (f(hd(lis),hd(tl(lis)))::tl(tl(lis)));
 
 (* 3D *)
 
