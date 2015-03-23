@@ -17,16 +17,27 @@ fun	zip x = fn y =>
 
 (* 3C *)
 fun reduction f lis = 	if null(tl(lis)) then  hd(lis)
-								else reduction f (f(hd(lis),hd(tl(lis)))::tl(tl(lis)));
+						else reduction f (f(hd(lis),hd(tl(lis)))::tl(tl(lis)));
 
 (* 3D *)
 
 (* 4A *)
+fun insert(x, lis):real list = 	if null(lis) then [x]
+								else if x < hd(lis) then x::lis
+								else if null(tl(lis)) then hd(lis)::[x]
+								else hd(lis)::insert(x, tl(lis));
 
 (* 4B *)
 
 (* 4C *)
+fun removeLast(lis) = 	if null(tl(lis)) then []
+						else hd(lis)::removeLast(tl(lis));
+
+fun middle (lis) = 	if null(tl(lis)) then hd(lis)
+					else if null(tl(tl(lis))) then hd(tl(lis))
+					else middle (removeLast(tl(lis)));
 
 (* 4D *)
 
 (* 4E *)
+
