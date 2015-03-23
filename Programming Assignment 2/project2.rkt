@@ -98,3 +98,15 @@
 	)
 )
 
+;;Test Cases
+(maxElement '(5 3 7 2 6 1 4))
+(elementAtIndex '(a b c d e f) 4)
+(compress '(a a a b b c c c d d d d e f f))
+(maxofmax '((5 3 6 2) (1 6 2 7) (7 3 8 2 9) (6 2 4 1)))
+(split '(a b c d e f g) 3)
+(sumList ' (5 4 3))
+(charactersPerWord ' (Scheme is so wonderful))
+(charactersPerSentence '((Hello Mary) (Scheme is so wonderful) (See you later) (John)))
+(wordsPerSentence '((Hello Mary) (Scheme is so wonderful) (See you later) (John)))
+(statsDocument '((Hello Mary) (Scheme is so wonderful) (See you later) (John)))
+
