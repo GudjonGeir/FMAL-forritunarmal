@@ -29,6 +29,20 @@ fun reduction f lis = 	if null(tl(lis)) then  hd(lis)
 						else reduction f (f(hd(lis),hd(tl(lis)))::tl(tl(lis)));
 
 (* 3D *)
+fun partition f = fn lis => 	if null(lis) then ([],[])
+								else if null(tl(lis)) then 
+									if f(hd(lis)) then (lis,[])
+									else ([],lis)
+								else
+								let
+									val head = hd(lis)
+									val tail = tl(lis)
+									val (M,N) = partition f tail
+								in
+									if f(head) then (head::M,N)
+									else (M,head::N)
+								end;
+
 
 (* 4A *)
 fun insert(x, lis):real list = 	if null(lis) then [x]
@@ -54,6 +68,17 @@ fun middle (lis) = 	if null(tl(lis)) then hd(lis)
 					else middle (removeLast(tl(lis)));
 
 (* 4D *)
+fun cartHelper(x, lis) = 	if null(lis) then nil
+							else (x, hd(lis))::cartHelper(x, tl(lis));
+
+fun cartesian lis1 = fn lis2 => if null(lis1) then nil
+								else 
+								let
+									val head = hd(lis1)
+									val tail = tl(lis1)
+								in
+									cartHelper(head, lis2)@cartesian tail lis2
+								end;
 
 (* 4E *)
 fun mymap f = fn lis => if null(lis) then []
@@ -64,3 +89,19 @@ fun mymap f = fn lis => if null(lis) then []
 						in
 							f(hd(lis))::mymap f tail
 						end;
+
+(* Test cases *)
+
+zip [1,2,3] ["a","b","c"];
+zip [1,2] ["a"];
+greaterThan [1,5,3,2,4] 3;
+reduction op+ [1,3,5,7,9];
+reduction op* [1,3,5,7,9];
+partition Char.isLower [#"P",#"a",#"3",#"%",#"b"];
+insert (3.3, [1.1, 2.2, 4.4, 5.5]);
+insertsort [2.2, 4.4, 5.5, 3.3, 1.1];
+middle [1,2,3,4,5];
+middle [true, false];
+cartesian ["a","b","c"] [1,2];
+(mymap (fn x => x*x)) [1,2,3,4]
+
